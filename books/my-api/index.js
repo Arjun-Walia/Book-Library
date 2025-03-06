@@ -2,15 +2,16 @@ const express = require('express');
 const cors = require('cors'); // Import cors
 const app = express();
 const port = 3009;
+const fs = require('fs');
 
 app.use(cors()); // Enable CORS
 app.use(express.json());
 
-let books = [
-    { id: 1, title: 'Mathematics', author: 'RdSharma' },
-    { id: 2, title: 'Chemistry', author: 'Dinesh' },
-    { id: 3, title: 'Physics', author: 'HcVerma' },
-];
+const books = fs.writeFileSync(path.join(__dirname, 'books.json'), JSON.stringify([
+    { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
+    { id: 3, title: '1984', author: 'George Orwell' }
+]));
 
 // GET ALL BOOKS
 app.get('/api/books', (req, res) => {
